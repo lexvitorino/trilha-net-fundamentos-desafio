@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace DesafioFundamentos.Models
 {
     public class Estacionamento
@@ -29,7 +31,16 @@ namespace DesafioFundamentos.Models
             }
             else
             {
-                veiculos.Add(placa);
+                var regex = new Regex(@"^([A-Z]{3}-?\d{4}|[A-Z]{3}\d[A-Z]\d{2})$");
+                bool valido = regex.IsMatch(placa.ToUpper());
+                if (!valido)
+                {
+                    Console.WriteLine("Placa informada não é uma placa valida");
+                }
+                else
+                {
+                    veiculos.Add(placa);
+                }
             }
         }
 
